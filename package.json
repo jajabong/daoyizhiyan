@@ -1,0 +1,29 @@
+{
+  "name": "dao-yi-zhi-yan",
+  "version": "0.1.0",
+  "description": "一个基于道教哲学和易经象征原理的AI算命网站",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "echo \"Error: 后端服务尚未实现\" && exit 1",
+    "test": "echo \"Error: 测试尚未设置\" && exit 1"
+  },
+  "keywords": [
+    "道教",
+    "易经",
+    "AI",
+    "算命",
+    "哲学"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/dao-yi-zhi-yan.git"
+  },
+  "dependencies": {
+    
+  },
+  "devDependencies": {
+    
+  }
+} 

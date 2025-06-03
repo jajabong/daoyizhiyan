@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>道易智言 - 简单测试</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #4e342e;
+        }
+        .test-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .test-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .test-status {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .pass {
+            color: green;
+        }
+        .fail {
+            color: red;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #8d6e63;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #6d4c41;
+        }
+        #results-summary {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>道易智言 - 功能测试</h1>
+    
+    <div id="tests-container">
+        <!-- 测试项将通过JavaScript动态添加 -->
+    </div>
+    
+    <div id="results-summary">
+        <!-- 测试结果摘要 -->
+    </div>
+    
+    <script>
+        // 测试配置
+        const tests = [
+            {
+                name: '检查HTML文件加载',
+                test: async () => {
+                    try {
+                        const response = await fetch('../frontend/index.html');
+                        return response.ok;
+                    } catch (error) {
+                        console.error('HTML加载测试失败:', error);
+                        return false;
+                    }
+                }
+            },
+            {
+                name: '检查CSS文件加载',
+                test: async () => {
+                    try {
+                        const response = await fetch('../frontend/styles.css');
+                        return response.ok;
+                    } catch (error) {
+                        console.error('CSS加载测试失败:', error);
+                        return false;
+                    }
+                }
+            },
+            {
+                name: '检查JavaScript文件加载',
+                test: async () => {
+                    try {
+                        const response = await fetch('../frontend/script.js');
+                        return response.ok;
+                    } catch (error) {
+                        console.error('JavaScript加载测试失败:', error);
+                        return false;
+                    }
+                }
+            },
+            {
+                name: '验证HTML基本结构',
+                test: async () => {
+                    try {
+                        const response = await fetch('../frontend/index.html');
+                        const html = await response.text();
+                        
+                        // 检查必要的HTML元素是否存在
+                        return html.includes('<div class="chat-container">') && 
+                               html.includes('<div class="chat-messages"') &&
+                               html.includes('<form id="messageForm">');
+                    } catch (error) {
+                        console.error('HTML结构测试失败:', error);
+                        return false;
+                    }
+                }
+            },
+            {
+                name: '检查资源目录结构',
+                test: async () => {
+                    // 简单检查assets目录是否存在（通过尝试加载README文件）
+                    try {
+                        const response = await fetch('../assets/images/README.md');
+                        return response.ok;
+                    } catch (error) {
+                        console.error('资源目录测试失败:', error);
+                        return false;
+                    }
+                }
+            }
+        ];
+        
+        // 生成测试UI
+        const testsContainer = document.getElementById('tests-container');
+        
+        tests.forEach((test, index) => {
+            const testDiv = document.createElement('div');
+            testDiv.className = 'test-item';
+            testDiv.id = `test-${index}`;
+            
+            const titleDiv = document.createElement('div');
+            titleDiv.className = 'test-title';
+            titleDiv.textContent = `测试 ${index + 1}: ${test.name}`;
+            
+            const statusDiv = document.createElement('div');
+            statusDiv.className = 'test-status';
+            statusDiv.id = `status-${index}`;
+            statusDiv.textContent = '等待测试...';
+            
+            const runButton = document.createElement('button');
+            runButton.textContent = '运行测试';
+            runButton.onclick = async () => {
+                statusDiv.textContent = '测试中...';
+                statusDiv.className = 'test-status';
+                
+                try {
+                    const result = await test.test();
+                    statusDiv.textContent = result ? '通过 ✓' : '失败 ✗';
+                    statusDiv.classList.add(result ? 'pass' : 'fail');
+                    
+                    // 更新测试项的UI
+                    testDiv.style.borderColor = result ? '#c8e6c9' : '#ffcdd2';
+                    testDiv.style.backgroundColor = result ? 'rgba(200, 230, 201, 0.2)' : 'rgba(255, 205, 210, 0.2)';
+                    
+                    // 更新总结果
+                    updateSummary();
+                } catch (error) {
+                    console.error(`测试 ${index + 1} 执行错误:`, error);
+                    statusDiv.textContent = '错误 ✗';
+                    statusDiv.className = 'test-status fail';
+                }
+            };
+            
+            testDiv.appendChild(titleDiv);
+            testDiv.appendChild(runButton);
+            testDiv.appendChild(statusDiv);
+            
+            testsContainer.appendChild(testDiv);
+        });
+        
+        // 添加运行所有测试的按钮
+        const runAllButton = document.createElement('button');
+        runAllButton.textContent = '运行所有测试';
+        runAllButton.style.display = 'block';
+        runAllButton.style.margin = '20px auto';
+        runAllButton.style.padding = '10px 20px';
+        runAllButton.style.fontSize = '1.1em';
+        
+        runAllButton.onclick = async () => {
+            let passCount = 0;
+            
+            for (let i = 0; i < tests.length; i++) {
+                const statusDiv = document.getElementById(`status-${i}`);
+                const testDiv = document.getElementById(`test-${i}`);
+                
+                statusDiv.textContent = '测试中...';
+                statusDiv.className = 'test-status';
+                
+                try {
+                    const result = await tests[i].test();
+                    statusDiv.textContent = result ? '通过 ✓' : '失败 ✗';
+                    statusDiv.classList.add(result ? 'pass' : 'fail');
+                    
+                    // 更新测试项的UI
+                    testDiv.style.borderColor = result ? '#c8e6c9' : '#ffcdd2';
+                    testDiv.style.backgroundColor = result ? 'rgba(200, 230, 201, 0.2)' : 'rgba(255, 205, 210, 0.2)';
+                    
+                    if (result) passCount++;
+                } catch (error) {
+                    console.error(`测试 ${i + 1} 执行错误:`, error);
+                    statusDiv.textContent = '错误 ✗';
+                    statusDiv.className = 'test-status fail';
+                }
+                
+                // 添加一点延迟，使测试看起来更顺序
+                await new Promise(resolve => setTimeout(resolve, 300));
+            }
+            
+            updateSummary(passCount);
+        };
+        
+        testsContainer.insertBefore(runAllButton, testsContainer.firstChild);
+        
+        // 更新结果摘要
+        function updateSummary(passCount) {
+            const resultsSummary = document.getElementById('results-summary');
+            
+            if (passCount === undefined) {
+                // 计算通过的测试数量
+                passCount = 0;
+                for (let i = 0; i < tests.length; i++) {
+                    const statusDiv = document.getElementById(`status-${i}`);
+                    if (statusDiv.classList.contains('pass')) {
+                        passCount++;
+                    }
+                }
+            }
+            
+            resultsSummary.textContent = `测试结果: ${passCount}/${tests.length} 通过`;
+            resultsSummary.style.color = passCount === tests.length ? 'green' : passCount === 0 ? 'red' : 'orange';
+        }
+    </script>
+</body>
+</html> 

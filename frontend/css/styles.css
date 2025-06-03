@@ -1,0 +1,306 @@
+/* 道易智言 - 主样式表 */
+
+:root {
+    --primary-color: #3d3a4b; /* 深邃的道教色彩 */
+    --accent-color: #8a7e66; /* 古朴的强调色 */
+    --background-color: #f9f7f0; /* 浅淡的背景色 */
+    --text-color: #333333; /* 深色文本 */
+    --message-bg-user: #e6e1d3; /* 用户消息背景色 */
+    --message-bg-ai: #f0f0f0; /* AI消息背景色 */
+    --border-color: #d1cec3; /* 边框颜色 */
+    --transition-time: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Serif SC', serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    /* 使用多层渐变色背景模拟水墨画效果 */
+    background: 
+        linear-gradient(120deg, rgba(249, 246, 240, 0.8) 0%, rgba(230, 225, 215, 0.8) 40%, rgba(200, 190, 180, 0.9) 80%),
+        radial-gradient(circle at 70% 20%, rgba(150, 165, 175, 0.4) 0%, rgba(100, 115, 125, 0.2) 40%, transparent 70%),
+        linear-gradient(45deg, rgba(175, 190, 200, 0.3) 0%, rgba(120, 135, 145, 0.2) 50%, transparent 100%);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: rgba(249, 247, 240, 0.9); /* 半透明容器背景 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+h1 {
+    font-size: 2.8rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    font-weight: 400;
+}
+
+main {
+    flex: 1;
+    width: 100%;
+    display: flex; /* Ensure main uses flex for chat container */
+    justify-content: center; /* Center chat container horizontally */
+    align-items: flex-start; /* Align chat container to the top */
+}
+
+.chat-container {
+    width: 100%; /* Use full width of main */
+    max-width: 800px;
+    margin: 0 auto; /* Center horizontally */
+    background-color: rgba(255, 255, 255, 0.8); /* 半透明背景 */
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 70vh; /* Keep height controlled */
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.message {
+    margin-bottom: 15px; /* Slightly reduce margin */
+    padding: 12px 18px;
+    border-radius: 8px;
+    max-width: 85%;
+    animation: fadeIn 0.3s ease-in-out;
+    line-height: 1.7;
+    word-wrap: break-word; /* Ensure long words wrap */
+    white-space: pre-wrap; /* Preserve whitespace and line breaks */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.message.system {
+    background-color: #f4f2ea; /* 浅黄色背景 */
+    border-left: 3px solid var(--accent-color);
+    margin: 10px auto; /* Center system messages */
+    max-width: 90%;
+    text-align: center;
+    font-style: italic;
+    color: #555; /* Slightly darker text for system */
+}
+
+.message.user {
+    background-color: var(--message-bg-user); /* 用户消息背景色 */
+    margin-left: auto;
+    text-align: right;
+    border-bottom-right-radius: 0;
+}
+
+.message.ai {
+    background-color: var(--message-bg-ai); /* AI消息背景色 */
+    margin-right: auto;
+    border-bottom-left-radius: 0;
+}
+
+.message p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.input-area {
+    padding: 15px;
+    border-top: 1px solid var(--border-color);
+    background-color: rgba(255, 255, 255, 0.95); /* 输入区域背景 */
+}
+
+#messageForm {
+    display: flex;
+    gap: 10px;
+}
+
+#userInput {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 25px; /* 圆角输入框 */
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.7); /* 半透明输入框 */
+    outline: none;
+    transition: border-color var(--transition-time), box-shadow var(--transition-time);
+}
+
+#userInput:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(138, 126, 102, 0.3); /* 聚焦阴影 */
+}
+
+button {
+    background-color: var(--primary-color); /* 主色按钮 */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color var(--transition-time);
+    flex-shrink: 0; /* Prevent button from shrinking */
+}
+
+button:hover {
+    background-color: #4e4a5e; /* 按钮悬停颜色 */
+}
+
+button.disabled,
+button[disabled] {
+    background-color: #9b98a3; /* 禁用时的淡色 */
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.input-area input:disabled {
+    background-color: rgba(245, 245, 245, 0.7);
+    cursor: not-allowed;
+}
+
+.send-icon {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    margin-top: 40px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+        width: 100%;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .chat-container {
+        height: 80vh; /* Adjust height for smaller screens */
+        width: 95%;
+    }
+    
+    .message {
+        max-width: 90%;
+        padding: 10px 15px; /* Adjust padding */
+    }
+    
+    /* 确保输入区域在移动端足够大 */
+    .input-area {
+        padding: 12px 10px;
+    }
+    
+    #userInput {
+        font-size: 1rem;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 5px;
+    }
+    
+    header {
+        margin-bottom: 15px;
+        padding: 15px 0 10px;
+    }
+    
+    .message p {
+        font-size: 0.95rem;
+    }
+    
+    #userInput {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+    
+    button {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .chat-container {
+        height: 75vh;
+    }
+    
+    .subtitle {
+        font-size: 0.9rem;
+    }
+    
+    /* 确保页脚在移动端不占太多空间 */
+    footer {
+        margin-top: 20px;
+        padding: 15px 0;
+        font-size: 0.8rem;
+    }
+}
+
+.loading-dots span {
+    animation: blink 1.4s infinite both;
+}
+
+.loading-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.loading-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes blink {
+    0% { opacity: 0.2; }
+    20% { opacity: 1; }
+    100% { opacity: 0.2; }
+} 

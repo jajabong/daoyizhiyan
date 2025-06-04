@@ -8,6 +8,7 @@ import os
 import sys
 import pkgutil
 import importlib
+import importlib.util
 import logging
 
 # 设置日志
@@ -39,7 +40,7 @@ def test_imports():
     # 尝试导入关键模块
     modules_to_test = [
         'flask', 'gunicorn', 'requests', 'backend',
-        'backend.server', 'wsgi', 'render_fix'
+        'backend.server', 'render_fix'
     ]
     
     for module_name in modules_to_test:
@@ -48,6 +49,30 @@ def test_imports():
             logger.info(f"成功导入模块: {module_name}")
         except ImportError as e:
             logger.error(f"无法导入模块 {module_name}: {e}")
+    
+    # 特殊处理wsgi.py文件
+    logger.info("===== 检查wsgi.py文件 =====")
+    wsgi_paths = ['wsgi.py', 'backend/wsgi.py']
+    for path in wsgi_paths:
+        if os.path.exists(path):
+            logger.info(f"找到wsgi文件: {path}")
+            # 尝试执行wsgi.py
+            try:
+                sys.path.insert(0, os.path.dirname(os.path.abspath(path)))
+                if path == 'wsgi.py':
+                    import wsgi
+                    logger.info("成功导入根目录wsgi模块")
+                elif path == 'backend/wsgi.py':
+                    # 动态导入，避免直接导入失败
+                    spec = importlib.util.spec_from_file_location("backend.wsgi", path)
+                    if spec:
+                        module = importlib.util.module_from_spec(spec)
+                        spec.loader.exec_module(module)
+                        logger.info("成功执行backend/wsgi.py文件")
+            except Exception as e:
+                logger.error(f"导入/执行{path}失败: {e}")
+        else:
+            logger.warning(f"找不到wsgi文件: {path}")
 
 def list_available_modules():
     """列出当前环境中可用的所有模块"""

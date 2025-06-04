@@ -3,13 +3,11 @@ services:
     name: daoyizhiyan
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: cd backend && gunicorn server:app
+    startCommand: gunicorn --bind 0.0.0.0:$PORT wsgi:app
     envVars:
       - key: OPENROUTER_API_KEY
         sync: false
       - key: DEBUG
-        value: False
-      - key: HOST
-        value: 0.0.0.0
+        value: false
       - key: PORT
-        value: 10000 
+        value: 10000

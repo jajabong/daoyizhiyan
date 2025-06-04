@@ -1,1 +1,1 @@
-web: cd backend && gunicorn server:app 
+web: gunicorn --bind 0.0.0.0:10000 wsgi:app

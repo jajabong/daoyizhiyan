@@ -1,27 +1,22 @@
-/* Buddhist Wisdom - Enhanced Visual Design */
+/* Buddhist Wisdom - Minimalist and Serene Design */
 
 :root {
-    /* Buddhist Color Palette */
-    --saffron-primary: #ff9933; /* Saffron - Buddhist robes */
-    --saffron-light: #ffcc66;
-    --maroon-deep: #800020; /* Deep maroon - Tibetan monk robes */
-    --maroon-light: #cc6677;
-    --lotus-pink: #f8b3d9; /* Lotus pink */
-    --gold-sacred: #daa520; /* Sacred gold */
-    --gold-light: #f0e68c;
-    --earth-brown: #8b4513; /* Earth brown */
-    --sage-green: #9caf88; /* Sage green */
-    --meditation-purple: #9370db; /* Meditation purple */
-    --cream-background: #faf6f2; /* Warm cream */
-    --paper-white: #fefefe;
-    --shadow-soft: rgba(139, 69, 19, 0.15);
-    --text-dark: #3e2723;
-    --text-gold: #b8860b;
-    
-    /* Sacred Geometry */
-    --golden-ratio: 1.618;
-    --border-radius-sacred: 8px;
-    --transition-time: 0.4s;
+    /* New Minimalist Color Palette */
+    --stone-white: #faf8f7;
+    --warm-beige: #f5f3f0;
+    --ink-gray: #2d2a28; /* For text and primary elements */
+    --pale-gold: #ddc8a0; /* Accent color */
+    --bamboo-green: #a8b8a0; /* Subtle accent */
+    --deep-charcoal: #1a1918; /* For important text / headings */
+
+    /* Typography & Layout */
+    --font-serif: 'Crimson Text', serif;
+    --font-sans: 'Inter', sans-serif;
+    --base-font-size: 16px;
+    --line-height-base: 1.7;
+    --spacing-unit: 20px;
+    --border-radius-main: 4px; /* Simplified border radius */
+    --transition-subtle: opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
 * {
@@ -31,219 +26,97 @@
 }
 
 body {
-    font-family: 'Inter', 'Crimson Text', serif;
-    background: var(--cream-background);
-    color: var(--text-dark);
-    line-height: 1.6;
+    font-family: var(--font-sans);
+    background-color: var(--stone-white);
+    color: var(--ink-gray);
+    line-height: var(--line-height-base);
+    font-size: var(--base-font-size);
     overflow-x: hidden;
     position: relative;
-    
-    /* Sacred background pattern */
-    background-image: 
-        radial-gradient(circle at 25% 25%, rgba(255, 153, 51, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(128, 0, 32, 0.05) 0%, transparent 50%),
-        linear-gradient(45deg, rgba(218, 165, 32, 0.02) 0%, rgba(156, 175, 136, 0.02) 100%);
-    background-size: 800px 800px, 600px 600px, 100% 100%;
-    background-position: 0 0, 100% 100%, 0 0;
-    animation: backgroundFloat 20s ease-in-out infinite;
+    padding: var(--spacing-unit); /* Add some body padding */
 }
 
-@keyframes backgroundFloat {
-    0%, 100% { background-position: 0 0, 100% 100%, 0 0; }
-    50% { background-position: 100px 100px, calc(100% - 100px) calc(100% - 100px), 0 0; }
-}
+/* Remove all @keyframes */
+/* @keyframes backgroundFloat ... (and all others) will be removed */
 
-/* Background Buddhist Art Elements */
+/* Remove Background Buddhist Art Elements - CSS classes related to .background-art, .mandala-decoration, .lotus-pattern, .zen-circle will be removed or their styles cleared */
 .background-art {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-}
-
-.mandala-decoration {
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    border: 2px solid rgba(218, 165, 32, 0.1);
-    border-radius: 50%;
-    background: 
-        radial-gradient(circle, transparent 40%, rgba(255, 153, 51, 0.05) 45%, transparent 50%),
-        conic-gradient(from 0deg, rgba(218, 165, 32, 0.1), transparent, rgba(218, 165, 32, 0.1));
-    animation: rotate 30s linear infinite;
-}
-
-.mandala-1 {
-    top: 10%;
-    right: 10%;
-    animation-direction: normal;
-}
-
-.mandala-2 {
-    bottom: 20%;
-    left: 5%;
-    animation-direction: reverse;
-    animation-duration: 40s;
-}
-
-@keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-.lotus-pattern {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background: radial-gradient(ellipse at center, rgba(248, 179, 217, 0.2) 30%, transparent 70%);
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-    animation: lotusFloat 15s ease-in-out infinite;
-}
-
-.lotus-1 {
-    top: 30%;
-    left: 15%;
-    animation-delay: 0s;
-}
-
-.lotus-2 {
-    top: 60%;
-    right: 20%;
-    animation-delay: 7s;
-}
-
-@keyframes lotusFloat {
-    0%, 100% { transform: translateY(0px) scale(1); opacity: 0.3; }
-    50% { transform: translateY(-20px) scale(1.1); opacity: 0.6; }
-}
-
-.zen-circle {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    border: 3px solid rgba(147, 112, 219, 0.1);
-    border-top: 3px solid rgba(147, 112, 219, 0.3);
-    border-radius: 50%;
-    animation: zenBreath 12s ease-in-out infinite;
-}
-
-.zen-1 {
-    top: 50%;
-    left: 80%;
-}
-
-.zen-2 {
-    bottom: 10%;
-    right: 40%;
-    animation-delay: 6s;
-}
-
-@keyframes zenBreath {
-    0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.2; }
-    50% { transform: scale(1.2) rotate(180deg); opacity: 0.4; }
+    display: none; /* Remove background art elements */
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 900px; /* Slightly narrower for more focus */
     margin: 0 auto;
-    padding: 20px;
+    padding: calc(var(--spacing-unit) * 2);
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    background: rgba(254, 254, 254, 0.9);
-    backdrop-filter: blur(10px);
-    border-radius: var(--border-radius-sacred);
-    box-shadow: 0 8px 32px var(--shadow-soft);
-    border: 1px solid rgba(218, 165, 32, 0.1);
+    min-height: calc(100vh - (var(--spacing-unit) * 4)); /* Adjust for body padding */
+    background-color: var(--warm-beige);
+    border-radius: var(--border-radius-main);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Softer shadow */
+    border: 1px solid #e0e0e0; /* Subtle border */
 }
 
-/* Header with Buddhist Elements */
+/* Header Simplification */
 header {
     text-align: center;
-    margin-bottom: 40px;
-    padding: 30px 0;
-    position: relative;
-    background: 
-        linear-gradient(135deg, rgba(255, 153, 51, 0.05) 0%, rgba(248, 179, 217, 0.05) 100%);
-    border-radius: var(--border-radius-sacred);
-    border: 1px solid rgba(218, 165, 32, 0.2);
+    margin-bottom: calc(var(--spacing-unit) * 2);
+    padding: var(--spacing-unit) 0;
+    border-bottom: 1px solid #e0e0e0; /* Simple separator */
+    background: none; /* Remove gradient background */
 }
 
 .header-decoration {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    margin-bottom: 20px;
-    font-size: 2rem;
-    animation: headerGlow 3s ease-in-out infinite;
+   display: none; /* Remove dharma wheel, lotus, om symbols from header */
 }
-
-@keyframes headerGlow {
-    0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 153, 51, 0.3)); }
-    50% { filter: drop-shadow(0 0 20px rgba(248, 179, 217, 0.5)); }
-}
-
-.dharma-wheel, .lotus-header, .om-symbol {
-    transition: transform var(--transition-time);
-}
-
-.dharma-wheel:hover { transform: rotate(90deg) scale(1.2); }
-.lotus-header:hover { transform: scale(1.3) rotateY(180deg); }
-.om-symbol:hover { transform: scale(1.2) rotateZ(360deg); }
 
 h1 {
-    font-family: 'Crimson Text', serif;
-    font-size: 3.5rem;
-    color: var(--maroon-deep);
-    margin-bottom: 15px;
+    font-family: var(--font-serif);
+    font-size: 2.8rem; /* Adjusted size */
+    color: var(--deep-charcoal);
+    margin-bottom: calc(var(--spacing-unit) / 2);
     font-weight: 600;
-    text-shadow: 2px 2px 4px rgba(218, 165, 32, 0.3);
-    background: linear-gradient(45deg, var(--maroon-deep), var(--gold-sacred));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    text-shadow: none; /* Remove text shadow */
+    background: none; /* Remove gradient text */
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
 }
 
 .subtitle {
-    font-size: 1.4rem;
-    color: var(--gold-sacred);
+    font-size: 1.1rem; /* Adjusted size */
+    color: var(--ink-gray);
     font-weight: 400;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-family: 'Inter', sans-serif;
+    margin-bottom: var(--spacing-unit);
+    letter-spacing: 0.5px; /* Reduced spacing */
+    text-transform: none; /* Normal case */
+    font-family: var(--font-sans);
 }
 
 .wisdom-quote {
-    background: rgba(255, 153, 51, 0.1);
-    padding: 15px 25px;
-    border-radius: var(--border-radius-sacred);
-    border-left: 4px solid var(--saffron-primary);
-    margin: 20px auto;
+    background: none; /* Remove background */
+    padding: var(--spacing-unit) 0;
+    border: none; /* Remove border */
+    margin: var(--spacing-unit) auto;
     max-width: 600px;
     font-style: italic;
+    color: var(--ink-gray);
 }
 
 .quote-text {
     display: block;
-    font-size: 1.1rem;
-    color: var(--text-dark);
-    margin-bottom: 8px;
+    font-size: 1rem;
+    margin-bottom: calc(var(--spacing-unit) / 4);
 }
 
 .quote-author {
     display: block;
     font-size: 0.9rem;
-    color: var(--text-gold);
+    color: var(--ink-gray);
     text-align: right;
     font-weight: 500;
 }
 
-/* Main Content */
+/* Main Content Simplification */
 main {
     flex: 1;
     width: 100%;
@@ -254,356 +127,246 @@ main {
 
 .chat-container {
     width: 100%;
-    max-width: 900px;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: var(--border-radius-sacred);
-    box-shadow: 0 6px 25px var(--shadow-soft);
+    background: var(--stone-white); /* Match body or use warm-beige */
+    border-radius: var(--border-radius-main);
+    box-shadow: none; /* Remove inner shadow, container has shadow */
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    height: 70vh;
-    border: 2px solid rgba(218, 165, 32, 0.2);
-    position: relative;
+    height: 65vh; /* Adjusted height */
+    border: 1px solid #e0e0e0; /* Subtle border */
 }
 
 .chat-header {
-    background: linear-gradient(90deg, var(--saffron-primary), var(--gold-sacred));
-    padding: 15px;
+    background: var(--warm-beige); /* Simplified background */
+    padding: var(--spacing-unit);
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Center title */
     align-items: center;
-    color: white;
+    color: var(--deep-charcoal);
     font-weight: 500;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .chat-title {
-    font-family: 'Crimson Text', serif;
-    font-size: 1.3rem;
-    letter-spacing: 1px;
+    font-family: var(--font-serif);
+    font-size: 1.2rem; /* Adjusted size */
+    letter-spacing: 0.5px;
 }
 
 .meditation-bell, .incense {
-    font-size: 1.5rem;
-    animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
+    display: none; /* Remove bell and incense icons */
 }
 
 .chat-messages {
     flex: 1;
     overflow-y: auto;
-    padding: 25px;
-    background: 
-        linear-gradient(135deg, rgba(250, 246, 242, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%);
+    padding: var(--spacing-unit);
+    background: var(--stone-white);
 }
 
 .message {
-    margin-bottom: 20px;
-    padding: 18px 25px;
-    border-radius: var(--border-radius-sacred);
+    margin-bottom: var(--spacing-unit);
+    padding: calc(var(--spacing-unit) * 0.75) var(--spacing-unit);
+    border-radius: var(--border-radius-main);
     max-width: 85%;
-    animation: messageSlide 0.5s ease-out;
+    /* animation: none; Remove messageSlide animation */
     position: relative;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
-}
-
-@keyframes messageSlide {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Very subtle shadow */
+    line-height: var(--line-height-base); /* Ensure readability - Task 3 refinement */
 }
 
 .message.system {
-    background: linear-gradient(135deg, rgba(255, 153, 51, 0.1), rgba(248, 179, 217, 0.1));
-    border: 2px solid rgba(218, 165, 32, 0.3);
-    margin: 15px auto;
+    background: var(--warm-beige);
+    /* border: 1px solid #e8e8e8; Task 4 refinement: Remove border */
+    color: var(--ink-gray);
+    margin: var(--spacing-unit) auto;
     max-width: 95%;
     text-align: center;
-    position: relative;
 }
 
 .message-decoration {
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--paper-white);
-    padding: 5px 10px;
-    border-radius: 50%;
-    border: 2px solid var(--saffron-primary);
-}
-
-.lotus-small {
-    font-size: 1.2rem;
-    animation: lotusGlow 3s ease-in-out infinite;
-}
-
-@keyframes lotusGlow {
-    0%, 100% { filter: drop-shadow(0 0 5px rgba(248, 179, 217, 0.5)); }
-    50% { filter: drop-shadow(0 0 15px rgba(255, 153, 51, 0.7)); }
+   display: none; /* Remove lotus-small decoration */
 }
 
 .message.user {
-    background: linear-gradient(135deg, var(--sage-green), rgba(156, 175, 136, 0.8));
+    background: var(--pale-gold); /* User messages with pale gold */
+    color: var(--deep-charcoal); /* Dark text for readability */
     margin-left: auto;
-    text-align: right;
-    border-bottom-right-radius: 4px;
-    color: white;
+    border-bottom-right-radius: var(--border-radius-main);
+    border-bottom-left-radius: var(--border-radius-main); /* Consistent radius */
 }
 
 .message.ai {
-    background: linear-gradient(135deg, rgba(147, 112, 219, 0.1), rgba(218, 165, 32, 0.1));
+    background: var(--warm-beige); /* AI messages with warm beige */
+    color: var(--ink-gray);
     margin-right: auto;
-    border-bottom-left-radius: 4px;
-    border-left: 4px solid var(--saffron-primary);
+    /* border: 1px solid #e8e8e8; Task 4 refinement: Remove border for AI messages */
+    border-bottom-left-radius: var(--border-radius-main);
+    border-bottom-right-radius: var(--border-radius-main); /* Consistent radius */
 }
 
 .message p {
     margin: 0;
-    font-size: 1rem;
-    line-height: 1.7;
+    font-size: 0.95rem; /* Slightly smaller for chat */
 }
 
-/* Input Area with Buddhist Decorations */
+/* Input Area Simplification */
 .input-area {
-    padding: 20px;
-    background: linear-gradient(90deg, rgba(255, 153, 51, 0.05), rgba(248, 179, 217, 0.05));
-    border-top: 2px solid rgba(218, 165, 32, 0.3);
-    position: relative;
+    padding: var(--spacing-unit);
+    background: var(--warm-beige);
+    border-top: 1px solid #e0e0e0;
 }
 
 .input-decoration {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, 
-        transparent, 
-        var(--saffron-primary), 
-        var(--gold-sacred), 
-        var(--lotus-pink), 
-        var(--maroon-light), 
-        transparent);
-}
-
-.prayer-flags {
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(90deg,
-        var(--saffron-primary) 0px,
-        var(--saffron-primary) 20px,
-        var(--maroon-light) 20px,
-        var(--maroon-light) 40px,
-        var(--gold-sacred) 40px,
-        var(--gold-sacred) 60px,
-        var(--sage-green) 60px,
-        var(--sage-green) 80px);
-    animation: flagsWave 8s ease-in-out infinite;
-}
-
-@keyframes flagsWave {
-    0%, 100% { transform: scaleY(1); }
-    50% { transform: scaleY(0.8); }
+    display: none; /* Remove prayer-flags decoration */
 }
 
 .input-wrapper {
     display: flex;
-    gap: 15px;
+    gap: var(--spacing-unit);
     align-items: center;
 }
 
 #userInput {
     flex: 1;
-    padding: 15px 20px;
-    border: 2px solid var(--gold-light);
-    border-radius: 25px;
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    background: rgba(255, 255, 255, 0.9);
+    padding: calc(var(--spacing-unit) * 0.6) calc(var(--spacing-unit) * 0.8);
+    border: 1px solid #ccc; /* Standard border */
+    border-radius: var(--border-radius-main);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    background: var(--stone-white);
     outline: none;
-    transition: all var(--transition-time);
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+    transition: border-color 0.3s ease-in-out;
+    box-shadow: none; /* Remove inset shadow */
 }
 
 #userInput:focus {
-    border-color: var(--saffron-primary);
-    box-shadow: 
-        inset 0 2px 5px rgba(0,0,0,0.05),
-        0 0 0 3px rgba(255, 153, 51, 0.2);
-    background: white;
+    border-color: var(--pale-gold); /* Focus with pale gold */
+    box-shadow: none;
+    background: var(--stone-white);
 }
 
 #userInput::placeholder {
-    color: var(--text-gold);
-    font-style: italic;
+    color: #aaa; /* Lighter placeholder */
+    font-style: normal;
 }
 
 button {
-    background: linear-gradient(135deg, var(--saffron-primary), var(--gold-sacred));
-    color: white;
+    background: var(--pale-gold);
+    color: var(--deep-charcoal);
     border: none;
-    border-radius: 50%;
-    width: 55px;
-    height: 55px;
+    border-radius: var(--border-radius-main); /* Consistent radius */
+    width: auto; /* Auto width based on padding */
+    height: auto; /* Auto height */
+    padding: calc(var(--spacing-unit) * 0.6) var(--spacing-unit);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all var(--transition-time);
-    box-shadow: 0 4px 15px rgba(255, 153, 51, 0.3);
-    position: relative;
-    overflow: hidden;
+    transition: var(--transition-subtle);
+    box-shadow: none; /* Remove button shadow */
+    font-size: 0.95rem;
 }
 
 button:hover {
-    transform: scale(1.1) rotate(10deg);
-    box-shadow: 0 6px 20px rgba(255, 153, 51, 0.5);
+    background: #d4b98c; /* Darken pale gold on hover */
+    transform: none; /* Remove hover transform */
 }
 
 button:active {
-    transform: scale(0.95);
+    transform: translateY(1px); /* Subtle press effect */
 }
 
 button::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 0.3s;
-}
-
-button:hover::before {
-    width: 100%;
-    height: 100%;
+    display: none; /* Remove pulse effect */
 }
 
 .send-icon {
-    font-size: 1.3rem;
-    z-index: 1;
+    font-size: 1.1rem; /* Adjusted icon size if needed */
 }
 
-/* Footer with Buddhist Elements */
+/* Footer Simplification */
 footer {
     text-align: center;
-    padding: 30px 0;
-    color: var(--text-gold);
-    font-size: 0.9rem;
-    margin-top: 40px;
-    background: linear-gradient(135deg, rgba(139, 69, 19, 0.05), rgba(218, 165, 32, 0.05));
-    border-radius: var(--border-radius-sacred);
-    border: 1px solid rgba(218, 165, 32, 0.2);
-    position: relative;
+    padding: var(--spacing-unit) 0;
+    color: #777; /* Softer footer text */
+    font-size: 0.85rem;
+    margin-top: calc(var(--spacing-unit) * 2);
+    background: none; /* Remove gradient background */
+    border-top: 1px solid #e0e0e0; /* Simple separator */
 }
 
 .footer-decoration {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    margin-bottom: 15px;
-    font-size: 1.5rem;
+    display: none; /* Remove footer icons */
 }
-
-.endless-knot, .double-vajra, .treasure-vase {
-    transition: transform var(--transition-time);
-    filter: drop-shadow(0 2px 4px rgba(218, 165, 32, 0.3));
-}
-
-.endless-knot:hover { transform: scale(1.2) rotate(45deg); }
-.double-vajra:hover { transform: scale(1.2) rotateY(180deg); }
-.treasure-vase:hover { transform: scale(1.2) rotateX(180deg); }
 
 .footer-mantra {
-    margin-top: 15px;
-    font-style: italic;
-    color: var(--maroon-deep);
-    font-size: 0.85rem;
-    letter-spacing: 1px;
-    animation: mantraGlow 4s ease-in-out infinite;
+    margin-top: calc(var(--spacing-unit) / 2);
+    font-style: normal; /* Not italic */
+    color: #888; /* Softer mantra text */
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    animation: none; /* Remove mantraGlow animation */
 }
 
-@keyframes mantraGlow {
-    0%, 100% { opacity: 0.7; }
-    50% { opacity: 1; }
-}
-
-/* Responsive Design */
+/* Responsive Design - keep for now, may need minor adjustments */
 @media (max-width: 768px) {
+    body {
+        padding: calc(var(--spacing-unit) / 2);
+    }
     .container {
-        padding: 15px;
-        margin: 10px;
+        padding: var(--spacing-unit);
+        margin: var(--spacing-unit) / 2;
+        min-height: calc(100vh - var(--spacing-unit));
     }
     
     h1 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
     
     .subtitle {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
-    
-    .header-decoration {
-        gap: 20px;
-        font-size: 1.5rem;
-    }
-    
+        
     .chat-container {
-        height: 75vh;
+        height: calc(100vh - 280px); /* Adjust based on other elements */
     }
     
     .message {
         max-width: 95%;
-        padding: 15px 20px;
+        padding: calc(var(--spacing-unit) * 0.6) calc(var(--spacing-unit) * 0.8);
     }
     
     .wisdom-quote {
-        padding: 12px 20px;
-        font-size: 0.95rem;
-    }
-    
-    .footer-decoration {
-        gap: 15px;
-        font-size: 1.2rem;
+        padding: calc(var(--spacing-unit) * 0.75) 0;
     }
 }
 
 @media (max-width: 480px) {
     h1 {
-        font-size: 2rem;
-    }
-    
-    .header-decoration {
-        gap: 15px;
-        font-size: 1.3rem;
-    }
-    
-    .chat-container {
-        height: 70vh;
+        font-size: 1.8rem;
     }
     
     .chat-header {
-        padding: 12px;
+        padding: calc(var(--spacing-unit) * 0.75);
     }
     
     .chat-title {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
     
     .input-wrapper {
-        gap: 10px;
+        flex-direction: column; /* Stack input and button on small screens */
+        gap: calc(var(--spacing-unit) / 2);
+    }
+
+    #userInput {
+        width: 100%;
     }
     
     button {
-        width: 50px;
-        height: 50px;
+        width: 100%; /* Full width button */
     }
     
     .footer-mantra {
@@ -611,42 +374,22 @@ footer {
     }
 }
 
-/* Loading Animation for AI Responses */
+/* Loading Animation - Keep simple, remove if too distracting */
 .loading-dots span {
-    animation: blink 1.4s infinite both;
+    /*animation: blink 1.4s infinite both; Remove blink for now */
+    display: inline-block; /* Keep dots if desired without animation */
+    opacity: 1;
 }
 
-.loading-dots span:nth-child(2) {
-    animation-delay: 0.2s;
-}
-
-.loading-dots span:nth-child(3) {
-    animation-delay: 0.4s;
-}
-
-@keyframes blink {
-    0% { opacity: 0.2; }
-    20% { opacity: 1; }
-    100% { opacity: 0.2; }
-}
-
-/* Sacred Scroll Effects */
-.message.ai::before {
-    content: '📜';
-    position: absolute;
-    left: -15px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.2rem;
-    opacity: 0.6;
-}
-
+/* Remove Sacred Scroll Effects */
+.message.ai::before,
 .message.user::after {
-    content: '🙏';
-    position: absolute;
-    right: -15px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1rem;
-    opacity: 0.6;
-} 
+    display: none; 
+}
+
+/* Remove all unused keyframes */
+/* @keyframes backgroundFloat, @keyframes rotate, @keyframes lotusFloat, @keyframes zenBreath, 
+   @keyframes headerGlow, @keyframes pulse, @keyframes messageSlide, @keyframes lotusGlow,
+   @keyframes flagsWave, @keyframes mantraGlow, @keyframes blink are effectively removed 
+   by not being defined or by removing their 'animation' calls. 
+   This comment serves as a reminder of what was targeted. */ 

@@ -1,4 +1,4 @@
-// 道易智言 - 主JavaScript文件
+// Buddhist Wisdom - Main JavaScript Application
 
 document.addEventListener('DOMContentLoaded', () => {
     const messageForm = document.getElementById('messageForm');
@@ -6,76 +6,101 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatMessages = document.getElementById('chatMessages');
     const submitButton = document.querySelector('#messageForm button');
     
-    // 设置后端API URL
+    // Backend API configuration
     const API_URL = '/chat';
     
-    // 添加事件监听器
+    // Initialize application
+    initializeApp();
+    
+    // Event listeners
     messageForm.addEventListener('submit', handleSubmit);
+    userInput.addEventListener('keypress', handleKeyPress);
     
-    // 添加欢迎消息
-    addWelcomeMessage();
+    // Initialize the application
+    function initializeApp() {
+        // The welcome message is already in the HTML, so we don't need to add it here
+        // Focus on the input field
+        userInput.focus();
+        
+        // Add subtle entrance animation
+        setTimeout(() => {
+            document.querySelector('.chat-container').style.opacity = '1';
+        }, 100);
+    }
     
-    // 处理表单提交
+    // Handle enter key press
+    function handleKeyPress(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            handleSubmit(e);
+        }
+    }
+    
+    // Handle form submission
     async function handleSubmit(e) {
         e.preventDefault();
         const message = userInput.value.trim();
         
-        // 检查消息是否为空
+        // Validate message
         if (!message) return;
         
-        // 禁用输入框和按钮
+        // Disable input during processing
         setInputState(false);
         
-        // 添加用户消息到聊天窗口
+        // Add user message to chat
         addMessage(message, 'user');
         
-        // 清空输入框
+        // Clear input field
         userInput.value = '';
         
-        // 显示加载指示器
+        // Show loading indicator with Buddhist aesthetic
         const loadingMessage = addLoadingMessage();
         
         try {
-            // 调用API获取AI回复
+            // Get AI response
             const response = await fetchAIResponse(message);
             
-            // 移除加载指示器
+            // Remove loading indicator
             loadingMessage.remove();
             
-            // 添加AI回复到聊天窗口
+            // Add AI response to chat
             addMessage(response, 'ai');
+            
         } catch (error) {
-            // 移除加载指示器
+            // Remove loading indicator
             loadingMessage.remove();
             
-            // 添加错误消息
+            // Add error message
             addErrorMessage(error.message);
-            console.error('获取AI回复时出错:', error);
+            console.error('Error getting AI response:', error);
+            
         } finally {
-            // 重新启用输入框和按钮
+            // Re-enable input
             setInputState(true);
             
-            // 聚焦到输入框
+            // Focus input field
             userInput.focus();
         }
         
-        // 滚动到最新消息
+        // Scroll to latest message
         scrollToBottom();
     }
     
-    // 设置输入状态（启用/禁用）
+    // Set input state (enabled/disabled)
     function setInputState(enabled) {
         userInput.disabled = !enabled;
         submitButton.disabled = !enabled;
         
         if (!enabled) {
             submitButton.classList.add('disabled');
+            userInput.style.opacity = '0.6';
         } else {
             submitButton.classList.remove('disabled');
+            userInput.style.opacity = '1';
         }
     }
     
-    // 获取AI回复
+    // Fetch AI response from backend
     async function fetchAIResponse(message) {
         try {
             const response = await fetch(API_URL, {
@@ -88,92 +113,166 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error(errorData.error || '服务器错误');
+                throw new Error(errorData.error || 'Server error occurred');
             }
             
             const data = await response.json();
             return data.response;
+            
         } catch (error) {
-            console.error('API调用出错:', error);
-            throw new Error('无法连接到服务器，请稍后再试');
+            console.error('API call error:', error);
+            throw new Error('Unable to connect to Buddhist Wisdom. Please try again in a moment.');
         }
     }
     
-    // 添加欢迎消息
-    function addWelcomeMessage() {
-        const systemDiv = document.createElement('div');
-        systemDiv.classList.add('message', 'system');
-        
-        const welcomeText = document.createElement('p');
-        welcomeText.textContent = '欢迎来到道易智言。心中有疑，可问道于此。';
-        
-        systemDiv.appendChild(welcomeText);
-        chatMessages.appendChild(systemDiv);
-        
-        // 添加道家初始引导消息
-        const aiDiv = document.createElement('div');
-        aiDiv.classList.add('message', 'ai');
-        
-        const aiText = document.createElement('p');
-        aiText.textContent = '万物皆有象，言象而明道。心有所思，何不道来？';
-        
-        aiDiv.appendChild(aiText);
-        chatMessages.appendChild(aiDiv);
-    }
-    
-    // 添加消息到聊天窗口
+    // Add message to chat window
     function addMessage(text, sender) {
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('message', sender);
         
+        // Add message decoration for system/AI messages
+        if (sender === 'ai') {
+            const decoration = document.createElement('div');
+            decoration.classList.add('message-decoration');
+            decoration.innerHTML = '<div class="lotus-small">🪷</div>';
+            messageDiv.appendChild(decoration);
+        }
+        
+        // Create message content container
+        const messageContent = document.createElement('div');
+        messageContent.classList.add('message-content');
+        
         const messageText = document.createElement('p');
         messageText.textContent = text;
         
-        messageDiv.appendChild(messageText);
+        messageContent.appendChild(messageText);
+        messageDiv.appendChild(messageContent);
+        
+        // Add entrance animation
+        messageDiv.style.opacity = '0';
+        messageDiv.style.transform = 'translateY(20px)';
+        
         chatMessages.appendChild(messageDiv);
         
-        // 滚动到最新消息
+        // Trigger animation
+        setTimeout(() => {
+            messageDiv.style.opacity = '1';
+            messageDiv.style.transform = 'translateY(0)';
+        }, 50);
+        
+        // Scroll to latest message
         scrollToBottom();
         
         return messageDiv;
     }
     
-    // 添加加载指示器
+    // Add loading indicator with Buddhist aesthetic
     function addLoadingMessage() {
         const loadingDiv = document.createElement('div');
         loadingDiv.classList.add('message', 'ai', 'loading');
         
-        // 添加一个简单的加载动画
-        loadingDiv.innerHTML = '<p>道易智言：思考中<span>.</span><span>.</span><span>.</span></p>';
-        loadingDiv.classList.add('loading-dots');
-
+        // Create decorative loading message
+        const decoration = document.createElement('div');
+        decoration.classList.add('message-decoration');
+        decoration.innerHTML = '<div class="lotus-small">🪷</div>';
+        
+        const messageContent = document.createElement('div');
+        messageContent.classList.add('message-content');
+        
+        const loadingText = document.createElement('p');
+        loadingText.innerHTML = 'Reflecting on your question<span class="loading-dots"><span>.</span><span>.</span><span>.</span></span>';
+        
+        messageContent.appendChild(loadingText);
+        loadingDiv.appendChild(decoration);
+        loadingDiv.appendChild(messageContent);
+        
         chatMessages.appendChild(loadingDiv);
         
-        // 滚动到最新消息
+        // Scroll to latest message
         scrollToBottom();
         
         return loadingDiv;
     }
     
-    // 添加错误消息
+    // Add error message with compassionate tone
     function addErrorMessage(errorText) {
         const errorDiv = document.createElement('div');
         errorDiv.classList.add('message', 'system', 'error');
         
-        const errorMessage = document.createElement('p');
-        errorMessage.textContent = `错误: ${errorText}`;
+        const decoration = document.createElement('div');
+        decoration.classList.add('message-decoration');
+        decoration.innerHTML = '<div class="lotus-small" style="filter: sepia(100%) hue-rotate(320deg);">🪷</div>';
         
-        errorDiv.appendChild(errorMessage);
+        const messageContent = document.createElement('div');
+        messageContent.classList.add('message-content');
+        
+        const errorMessage = document.createElement('p');
+        errorMessage.textContent = `I apologize, but I encountered an issue: ${errorText}. Please take a mindful breath and try again.`;
+        
+        messageContent.appendChild(errorMessage);
+        errorDiv.appendChild(decoration);
+        errorDiv.appendChild(messageContent);
+        
         chatMessages.appendChild(errorDiv);
         
         return errorDiv;
     }
     
-    // 滚动到最新消息
+    // Smooth scroll to bottom
     function scrollToBottom() {
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+        const scrollTarget = chatMessages.scrollHeight - chatMessages.clientHeight;
+        const currentScroll = chatMessages.scrollTop;
+        const distance = scrollTarget - currentScroll;
+        
+        if (Math.abs(distance) < 10) {
+            chatMessages.scrollTop = scrollTarget;
+            return;
+        }
+        
+        // Smooth scroll animation
+        const duration = 300;
+        const startTime = performance.now();
+        
+        function animateScroll(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Easing function for smooth animation
+            const easeProgress = 1 - Math.pow(1 - progress, 3);
+            
+            chatMessages.scrollTop = currentScroll + (distance * easeProgress);
+            
+            if (progress < 1) {
+                requestAnimationFrame(animateScroll);
+            }
+        }
+        
+        requestAnimationFrame(animateScroll);
     }
     
-    // 初始化时聚焦输入框
-    userInput.focus();
+    // Add meditation bell sound effect (optional enhancement)
+    function playMeditationBell() {
+        // This could be enhanced with actual audio in the future
+        // For now, we'll use a visual indication
+        const bell = document.querySelector('.meditation-bell');
+        if (bell) {
+            bell.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                bell.style.transform = 'scale(1)';
+            }, 200);
+        }
+    }
+    
+    // Easter egg: Typing "om" or similar mantras triggers special effects
+    userInput.addEventListener('input', (e) => {
+        const value = e.target.value.toLowerCase();
+        const mantras = ['om', 'aum', 'namaste', 'peace', 'metta'];
+        
+        if (mantras.some(mantra => value.includes(mantra))) {
+            document.body.style.filter = 'sepia(10%) hue-rotate(15deg) brightness(1.05)';
+            setTimeout(() => {
+                document.body.style.filter = '';
+            }, 1000);
+        }
+    });
 }); 

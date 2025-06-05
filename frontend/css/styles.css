@@ -1,15 +1,27 @@
-/* 生活智言 - 主样式表 */
+/* Buddhist Wisdom - Enhanced Visual Design */
 
 :root {
-    --primary-color: #5d4e6d; /* 深紫色，象征智慧和宁静 */
-    --accent-color: #a0956b; /* 金色，象征觉悟和慈悲 */
-    --background-color: #f7f5f3; /* 温和的米白色背景 */
-    --text-color: #2c2c2c; /* 深色文本 */
-    --message-bg-user: #e8e3f0; /* 用户消息背景色（浅紫色） */
-    --message-bg-ai: #f5f3f0; /* AI消息背景色（温暖的米色） */
-    --border-color: #d4c9b8; /* 边框颜色（温和的棕色） */
-    --lotus-color: #d4a574; /* 莲花色调 */
-    --transition-time: 0.3s;
+    /* Buddhist Color Palette */
+    --saffron-primary: #ff9933; /* Saffron - Buddhist robes */
+    --saffron-light: #ffcc66;
+    --maroon-deep: #800020; /* Deep maroon - Tibetan monk robes */
+    --maroon-light: #cc6677;
+    --lotus-pink: #f8b3d9; /* Lotus pink */
+    --gold-sacred: #daa520; /* Sacred gold */
+    --gold-light: #f0e68c;
+    --earth-brown: #8b4513; /* Earth brown */
+    --sage-green: #9caf88; /* Sage green */
+    --meditation-purple: #9370db; /* Meditation purple */
+    --cream-background: #faf6f2; /* Warm cream */
+    --paper-white: #fefefe;
+    --shadow-soft: rgba(139, 69, 19, 0.15);
+    --text-dark: #3e2723;
+    --text-gold: #b8860b;
+    
+    /* Sacred Geometry */
+    --golden-ratio: 1.618;
+    --border-radius-sacred: 8px;
+    --transition-time: 0.4s;
 }
 
 * {
@@ -19,275 +31,587 @@
 }
 
 body {
-    font-family: 'Noto Serif SC', serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
+    font-family: 'Inter', 'Crimson Text', serif;
+    background: var(--cream-background);
+    color: var(--text-dark);
     line-height: 1.6;
-    /* 佛学风格的渐变背景，营造宁静祥和的氛围 */
+    overflow-x: hidden;
+    position: relative;
+    
+    /* Sacred background pattern */
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(255, 153, 51, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(128, 0, 32, 0.05) 0%, transparent 50%),
+        linear-gradient(45deg, rgba(218, 165, 32, 0.02) 0%, rgba(156, 175, 136, 0.02) 100%);
+    background-size: 800px 800px, 600px 600px, 100% 100%;
+    background-position: 0 0, 100% 100%, 0 0;
+    animation: backgroundFloat 20s ease-in-out infinite;
+}
+
+@keyframes backgroundFloat {
+    0%, 100% { background-position: 0 0, 100% 100%, 0 0; }
+    50% { background-position: 100px 100px, calc(100% - 100px) calc(100% - 100px), 0 0; }
+}
+
+/* Background Buddhist Art Elements */
+.background-art {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.mandala-decoration {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border: 2px solid rgba(218, 165, 32, 0.1);
+    border-radius: 50%;
     background: 
-        linear-gradient(135deg, rgba(247, 245, 243, 0.9) 0%, rgba(240, 235, 225, 0.8) 40%, rgba(220, 210, 195, 0.9) 80%),
-        radial-gradient(circle at 30% 80%, rgba(212, 165, 116, 0.2) 0%, rgba(160, 149, 107, 0.1) 40%, transparent 70%),
-        linear-gradient(45deg, rgba(93, 78, 109, 0.1) 0%, rgba(140, 130, 155, 0.1) 50%, transparent 100%);
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    min-height: 100vh;
+        radial-gradient(circle, transparent 40%, rgba(255, 153, 51, 0.05) 45%, transparent 50%),
+        conic-gradient(from 0deg, rgba(218, 165, 32, 0.1), transparent, rgba(218, 165, 32, 0.1));
+    animation: rotate 30s linear infinite;
+}
+
+.mandala-1 {
+    top: 10%;
+    right: 10%;
+    animation-direction: normal;
+}
+
+.mandala-2 {
+    bottom: 20%;
+    left: 5%;
+    animation-direction: reverse;
+    animation-duration: 40s;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.lotus-pattern {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(ellipse at center, rgba(248, 179, 217, 0.2) 30%, transparent 70%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: lotusFloat 15s ease-in-out infinite;
+}
+
+.lotus-1 {
+    top: 30%;
+    left: 15%;
+    animation-delay: 0s;
+}
+
+.lotus-2 {
+    top: 60%;
+    right: 20%;
+    animation-delay: 7s;
+}
+
+@keyframes lotusFloat {
+    0%, 100% { transform: translateY(0px) scale(1); opacity: 0.3; }
+    50% { transform: translateY(-20px) scale(1.1); opacity: 0.6; }
+}
+
+.zen-circle {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border: 3px solid rgba(147, 112, 219, 0.1);
+    border-top: 3px solid rgba(147, 112, 219, 0.3);
+    border-radius: 50%;
+    animation: zenBreath 12s ease-in-out infinite;
+}
+
+.zen-1 {
+    top: 50%;
+    left: 80%;
+}
+
+.zen-2 {
+    bottom: 10%;
+    right: 40%;
+    animation-delay: 6s;
+}
+
+@keyframes zenBreath {
+    0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.2; }
+    50% { transform: scale(1.2) rotate(180deg); opacity: 0.4; }
 }
 
 .container {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: rgba(247, 245, 243, 0.95); /* 温和的半透明容器背景 */
-    box-shadow: 0 6px 20px rgba(93, 78, 109, 0.15);
-    border-radius: 12px;
-    overflow: hidden;
+    background: rgba(254, 254, 254, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: var(--border-radius-sacred);
+    box-shadow: 0 8px 32px var(--shadow-soft);
+    border: 1px solid rgba(218, 165, 32, 0.1);
 }
 
+/* Header with Buddhist Elements */
 header {
     text-align: center;
     margin-bottom: 40px;
-    padding: 20px 0;
-    border-bottom: 1px solid var(--border-color);
+    padding: 30px 0;
+    position: relative;
+    background: 
+        linear-gradient(135deg, rgba(255, 153, 51, 0.05) 0%, rgba(248, 179, 217, 0.05) 100%);
+    border-radius: var(--border-radius-sacred);
+    border: 1px solid rgba(218, 165, 32, 0.2);
 }
 
+.header-decoration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    animation: headerGlow 3s ease-in-out infinite;
+}
+
+@keyframes headerGlow {
+    0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 153, 51, 0.3)); }
+    50% { filter: drop-shadow(0 0 20px rgba(248, 179, 217, 0.5)); }
+}
+
+.dharma-wheel, .lotus-header, .om-symbol {
+    transition: transform var(--transition-time);
+}
+
+.dharma-wheel:hover { transform: rotate(90deg) scale(1.2); }
+.lotus-header:hover { transform: scale(1.3) rotateY(180deg); }
+.om-symbol:hover { transform: scale(1.2) rotateZ(360deg); }
+
 h1 {
-    font-size: 2.8rem;
-    color: var(--primary-color);
-    margin-bottom: 10px;
-    font-weight: 500;
+    font-family: 'Crimson Text', serif;
+    font-size: 3.5rem;
+    color: var(--maroon-deep);
+    margin-bottom: 15px;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(218, 165, 32, 0.3);
+    background: linear-gradient(45deg, var(--maroon-deep), var(--gold-sacred));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .subtitle {
-    font-size: 1.2rem;
-    color: var(--accent-color);
+    font-size: 1.4rem;
+    color: var(--gold-sacred);
     font-weight: 400;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
 }
 
+.wisdom-quote {
+    background: rgba(255, 153, 51, 0.1);
+    padding: 15px 25px;
+    border-radius: var(--border-radius-sacred);
+    border-left: 4px solid var(--saffron-primary);
+    margin: 20px auto;
+    max-width: 600px;
+    font-style: italic;
+}
+
+.quote-text {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.quote-author {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-gold);
+    text-align: right;
+    font-weight: 500;
+}
+
+/* Main Content */
 main {
     flex: 1;
     width: 100%;
-    display: flex; /* Ensure main uses flex for chat container */
-    justify-content: center; /* Center chat container horizontally */
-    align-items: flex-start; /* Align chat container to the top */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .chat-container {
-    width: 100%; /* Use full width of main */
-    max-width: 800px;
-    margin: 0 auto; /* Center horizontally */
-    background-color: rgba(255, 255, 255, 0.8); /* 半透明背景 */
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: var(--border-radius-sacred);
+    box-shadow: 0 6px 25px var(--shadow-soft);
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    height: 70vh; /* Keep height controlled */
+    height: 70vh;
+    border: 2px solid rgba(218, 165, 32, 0.2);
+    position: relative;
+}
+
+.chat-header {
+    background: linear-gradient(90deg, var(--saffron-primary), var(--gold-sacred));
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.chat-title {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+}
+
+.meditation-bell, .incense {
+    font-size: 1.5rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
 }
 
 .chat-messages {
     flex: 1;
     overflow-y: auto;
-    padding: 20px;
+    padding: 25px;
+    background: 
+        linear-gradient(135deg, rgba(250, 246, 242, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%);
 }
 
 .message {
-    margin-bottom: 15px; /* Slightly reduce margin */
-    padding: 12px 18px;
-    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 18px 25px;
+    border-radius: var(--border-radius-sacred);
     max-width: 85%;
-    animation: fadeIn 0.3s ease-in-out;
-    line-height: 1.7;
-    word-wrap: break-word; /* Ensure long words wrap */
-    white-space: pre-wrap; /* Preserve whitespace and line breaks */
+    animation: messageSlide 0.5s ease-out;
+    position: relative;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+@keyframes messageSlide {
+    from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 .message.system {
-    background-color: #f8f6f2; /* 温和的背景色 */
-    border-left: 3px solid var(--lotus-color);
-    margin: 10px auto; /* Center system messages */
-    max-width: 90%;
+    background: linear-gradient(135deg, rgba(255, 153, 51, 0.1), rgba(248, 179, 217, 0.1));
+    border: 2px solid rgba(218, 165, 32, 0.3);
+    margin: 15px auto;
+    max-width: 95%;
     text-align: center;
-    font-style: italic;
-    color: #4a4a4a; /* 温和的深色文本 */
+    position: relative;
+}
+
+.message-decoration {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--paper-white);
+    padding: 5px 10px;
+    border-radius: 50%;
+    border: 2px solid var(--saffron-primary);
+}
+
+.lotus-small {
+    font-size: 1.2rem;
+    animation: lotusGlow 3s ease-in-out infinite;
+}
+
+@keyframes lotusGlow {
+    0%, 100% { filter: drop-shadow(0 0 5px rgba(248, 179, 217, 0.5)); }
+    50% { filter: drop-shadow(0 0 15px rgba(255, 153, 51, 0.7)); }
 }
 
 .message.user {
-    background-color: var(--message-bg-user); /* 用户消息背景色 */
+    background: linear-gradient(135deg, var(--sage-green), rgba(156, 175, 136, 0.8));
     margin-left: auto;
     text-align: right;
-    border-bottom-right-radius: 0;
+    border-bottom-right-radius: 4px;
+    color: white;
 }
 
 .message.ai {
-    background-color: var(--message-bg-ai); /* AI消息背景色 */
+    background: linear-gradient(135deg, rgba(147, 112, 219, 0.1), rgba(218, 165, 32, 0.1));
     margin-right: auto;
-    border-bottom-left-radius: 0;
+    border-bottom-left-radius: 4px;
+    border-left: 4px solid var(--saffron-primary);
 }
 
 .message p {
     margin: 0;
     font-size: 1rem;
+    line-height: 1.7;
 }
 
+/* Input Area with Buddhist Decorations */
 .input-area {
-    padding: 15px;
-    border-top: 1px solid var(--border-color);
-    background-color: rgba(255, 255, 255, 0.95); /* 输入区域背景 */
+    padding: 20px;
+    background: linear-gradient(90deg, rgba(255, 153, 51, 0.05), rgba(248, 179, 217, 0.05));
+    border-top: 2px solid rgba(218, 165, 32, 0.3);
+    position: relative;
 }
 
-#messageForm {
+.input-decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--saffron-primary), 
+        var(--gold-sacred), 
+        var(--lotus-pink), 
+        var(--maroon-light), 
+        transparent);
+}
+
+.prayer-flags {
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(90deg,
+        var(--saffron-primary) 0px,
+        var(--saffron-primary) 20px,
+        var(--maroon-light) 20px,
+        var(--maroon-light) 40px,
+        var(--gold-sacred) 40px,
+        var(--gold-sacred) 60px,
+        var(--sage-green) 60px,
+        var(--sage-green) 80px);
+    animation: flagsWave 8s ease-in-out infinite;
+}
+
+@keyframes flagsWave {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(0.8); }
+}
+
+.input-wrapper {
     display: flex;
-    gap: 10px;
+    gap: 15px;
+    align-items: center;
 }
 
 #userInput {
     flex: 1;
-    padding: 12px 15px;
-    border: 1px solid var(--border-color);
-    border-radius: 25px; /* 圆角输入框 */
-    font-family: 'Noto Serif SC', serif;
+    padding: 15px 20px;
+    border: 2px solid var(--gold-light);
+    border-radius: 25px;
+    font-family: 'Inter', sans-serif;
     font-size: 1rem;
-    background-color: rgba(255, 255, 255, 0.7); /* 半透明输入框 */
+    background: rgba(255, 255, 255, 0.9);
     outline: none;
-    transition: border-color var(--transition-time), box-shadow var(--transition-time);
+    transition: all var(--transition-time);
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
 }
 
 #userInput:focus {
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 2px rgba(138, 126, 102, 0.3); /* 聚焦阴影 */
+    border-color: var(--saffron-primary);
+    box-shadow: 
+        inset 0 2px 5px rgba(0,0,0,0.05),
+        0 0 0 3px rgba(255, 153, 51, 0.2);
+    background: white;
+}
+
+#userInput::placeholder {
+    color: var(--text-gold);
+    font-style: italic;
 }
 
 button {
-    background-color: var(--primary-color); /* 主色按钮 */
+    background: linear-gradient(135deg, var(--saffron-primary), var(--gold-sacred));
     color: white;
     border: none;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: background-color var(--transition-time);
-    flex-shrink: 0; /* Prevent button from shrinking */
+    transition: all var(--transition-time);
+    box-shadow: 0 4px 15px rgba(255, 153, 51, 0.3);
+    position: relative;
+    overflow: hidden;
 }
 
 button:hover {
-    background-color: #4e4a5e; /* 按钮悬停颜色 */
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 6px 20px rgba(255, 153, 51, 0.5);
 }
 
-button.disabled,
-button[disabled] {
-    background-color: #9b98a3; /* 禁用时的淡色 */
-    cursor: not-allowed;
-    opacity: 0.7;
+button:active {
+    transform: scale(0.95);
 }
 
-.input-area input:disabled {
-    background-color: rgba(245, 245, 245, 0.7);
-    cursor: not-allowed;
+button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s;
+}
+
+button:hover::before {
+    width: 100%;
+    height: 100%;
 }
 
 .send-icon {
-    font-size: 1.2rem;
-    font-weight: 500;
+    font-size: 1.3rem;
+    z-index: 1;
 }
 
+/* Footer with Buddhist Elements */
 footer {
     text-align: center;
-    padding: 20px 0;
-    color: var(--accent-color);
+    padding: 30px 0;
+    color: var(--text-gold);
     font-size: 0.9rem;
     margin-top: 40px;
-    border-top: 1px solid var(--border-color);
+    background: linear-gradient(135deg, rgba(139, 69, 19, 0.05), rgba(218, 165, 32, 0.05));
+    border-radius: var(--border-radius-sacred);
+    border: 1px solid rgba(218, 165, 32, 0.2);
+    position: relative;
 }
 
-/* 响应式设计 */
+.footer-decoration {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.endless-knot, .double-vajra, .treasure-vase {
+    transition: transform var(--transition-time);
+    filter: drop-shadow(0 2px 4px rgba(218, 165, 32, 0.3));
+}
+
+.endless-knot:hover { transform: scale(1.2) rotate(45deg); }
+.double-vajra:hover { transform: scale(1.2) rotateY(180deg); }
+.treasure-vase:hover { transform: scale(1.2) rotateX(180deg); }
+
+.footer-mantra {
+    margin-top: 15px;
+    font-style: italic;
+    color: var(--maroon-deep);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    animation: mantraGlow 4s ease-in-out infinite;
+}
+
+@keyframes mantraGlow {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
     .container {
-        padding: 10px;
-        width: 100%;
+        padding: 15px;
+        margin: 10px;
     }
     
     h1 {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
     }
     
     .subtitle {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
     
-    .chat-container {
-        height: 80vh; /* Adjust height for smaller screens */
-        width: 95%;
-    }
-    
-    .message {
-        max-width: 90%;
-        padding: 10px 15px; /* Adjust padding */
-    }
-    
-    /* 确保输入区域在移动端足够大 */
-    .input-area {
-        padding: 12px 10px;
-    }
-    
-    #userInput {
-        font-size: 1rem;
-        padding: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.8rem;
-        margin-bottom: 5px;
-    }
-    
-    header {
-        margin-bottom: 15px;
-        padding: 15px 0 10px;
-    }
-    
-    .message p {
-        font-size: 0.95rem;
-    }
-    
-    #userInput {
-        padding: 10px 12px;
-        font-size: 0.95rem;
-    }
-    
-    button {
-        width: 45px;
-        height: 45px;
+    .header-decoration {
+        gap: 20px;
+        font-size: 1.5rem;
     }
     
     .chat-container {
         height: 75vh;
     }
     
-    .subtitle {
-        font-size: 0.9rem;
+    .message {
+        max-width: 95%;
+        padding: 15px 20px;
     }
     
-    /* 确保页脚在移动端不占太多空间 */
-    footer {
-        margin-top: 20px;
-        padding: 15px 0;
-        font-size: 0.8rem;
+    .wisdom-quote {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+    }
+    
+    .footer-decoration {
+        gap: 15px;
+        font-size: 1.2rem;
     }
 }
 
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .header-decoration {
+        gap: 15px;
+        font-size: 1.3rem;
+    }
+    
+    .chat-container {
+        height: 70vh;
+    }
+    
+    .chat-header {
+        padding: 12px;
+    }
+    
+    .chat-title {
+        font-size: 1.1rem;
+    }
+    
+    .input-wrapper {
+        gap: 10px;
+    }
+    
+    button {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .footer-mantra {
+        font-size: 0.75rem;
+    }
+}
+
+/* Loading Animation for AI Responses */
 .loading-dots span {
     animation: blink 1.4s infinite both;
 }
@@ -304,4 +628,25 @@ footer {
     0% { opacity: 0.2; }
     20% { opacity: 1; }
     100% { opacity: 0.2; }
+}
+
+/* Sacred Scroll Effects */
+.message.ai::before {
+    content: '📜';
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    opacity: 0.6;
+}
+
+.message.user::after {
+    content: '🙏';
+    position: absolute;
+    right: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    opacity: 0.6;
 } 

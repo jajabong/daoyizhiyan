@@ -1,13 +1,14 @@
-/* 道易智言 - 主样式表 */
+/* 生活智言 - 主样式表 */
 
 :root {
-    --primary-color: #3d3a4b; /* 深邃的道教色彩 */
-    --accent-color: #8a7e66; /* 古朴的强调色 */
-    --background-color: #f9f7f0; /* 浅淡的背景色 */
-    --text-color: #333333; /* 深色文本 */
-    --message-bg-user: #e6e1d3; /* 用户消息背景色 */
-    --message-bg-ai: #f0f0f0; /* AI消息背景色 */
-    --border-color: #d1cec3; /* 边框颜色 */
+    --primary-color: #5d4e6d; /* 深紫色，象征智慧和宁静 */
+    --accent-color: #a0956b; /* 金色，象征觉悟和慈悲 */
+    --background-color: #f7f5f3; /* 温和的米白色背景 */
+    --text-color: #2c2c2c; /* 深色文本 */
+    --message-bg-user: #e8e3f0; /* 用户消息背景色（浅紫色） */
+    --message-bg-ai: #f5f3f0; /* AI消息背景色（温暖的米色） */
+    --border-color: #d4c9b8; /* 边框颜色（温和的棕色） */
+    --lotus-color: #d4a574; /* 莲花色调 */
     --transition-time: 0.3s;
 }
 
@@ -22,11 +23,11 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
-    /* 使用多层渐变色背景模拟水墨画效果 */
+    /* 佛学风格的渐变背景，营造宁静祥和的氛围 */
     background: 
-        linear-gradient(120deg, rgba(249, 246, 240, 0.8) 0%, rgba(230, 225, 215, 0.8) 40%, rgba(200, 190, 180, 0.9) 80%),
-        radial-gradient(circle at 70% 20%, rgba(150, 165, 175, 0.4) 0%, rgba(100, 115, 125, 0.2) 40%, transparent 70%),
-        linear-gradient(45deg, rgba(175, 190, 200, 0.3) 0%, rgba(120, 135, 145, 0.2) 50%, transparent 100%);
+        linear-gradient(135deg, rgba(247, 245, 243, 0.9) 0%, rgba(240, 235, 225, 0.8) 40%, rgba(220, 210, 195, 0.9) 80%),
+        radial-gradient(circle at 30% 80%, rgba(212, 165, 116, 0.2) 0%, rgba(160, 149, 107, 0.1) 40%, transparent 70%),
+        linear-gradient(45deg, rgba(93, 78, 109, 0.1) 0%, rgba(140, 130, 155, 0.1) 50%, transparent 100%);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -40,9 +41,9 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: rgba(249, 247, 240, 0.9); /* 半透明容器背景 */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    background-color: rgba(247, 245, 243, 0.95); /* 温和的半透明容器背景 */
+    box-shadow: 0 6px 20px rgba(93, 78, 109, 0.15);
+    border-radius: 12px;
     overflow: hidden;
 }
 
@@ -110,13 +111,13 @@ main {
 }
 
 .message.system {
-    background-color: #f4f2ea; /* 浅黄色背景 */
-    border-left: 3px solid var(--accent-color);
+    background-color: #f8f6f2; /* 温和的背景色 */
+    border-left: 3px solid var(--lotus-color);
     margin: 10px auto; /* Center system messages */
     max-width: 90%;
     text-align: center;
     font-style: italic;
-    color: #555; /* Slightly darker text for system */
+    color: #4a4a4a; /* 温和的深色文本 */
 }
 
 .message.user {

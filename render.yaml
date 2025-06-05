@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: daoyizhiyan
+    name: shenghuozhiyan
     env: python
     buildCommand: pip install -r requirements.txt && python fix_render_modules.py
     startCommand: gunicorn render_fix:app

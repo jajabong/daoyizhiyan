@@ -1,7 +1,7 @@
 #!/bin/bash
-# 道易智言项目 - Render部署准备脚本
+# 生活智言项目 - Render部署准备脚本
 
-echo "===== 道易智言 - Render部署准备脚本 ====="
+echo "===== 生活智言 - Render部署准备脚本 ====="
 echo "此脚本将帮助您准备项目以便在Render上部署"
 
 # 确保所有必要文件已添加到Git
@@ -17,7 +17,7 @@ git push -u origin main || { echo "推送失败，请检查GitHub连接"; exit 1
 if [ ! -f backend/.env.example ]; then
     echo "3. 创建环境变量示例文件..."
     cat > backend/.env.example << EOF
-# 道易智言环境变量示例
+# 生活智言环境变量示例
 # 复制此文件为.env并填写您的API密钥
 
 # OpenRouter API密钥 (必需)
@@ -61,7 +61,7 @@ echo "1. 选择'Build and deploy from a Git repository'"
 echo "2. 连接您的GitHub账号并授权访问"
 echo "3. 找到并选择'jajabong/daoyizhiyan'仓库"
 echo "4. 配置以下选项:"
-echo "   - 名称: daoyizhiyan"
+echo "   - 名称: shenghuozhiyan (生活智言)"
 echo "   - 区域: 选择适合您用户的区域"
 echo "   - 分支: main"
 echo "   - 运行时环境: Python 3"
